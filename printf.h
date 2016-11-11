@@ -28,7 +28,11 @@ int serial_putc( char c, FILE * )
 
 void printf_begin(void)
 {
+#if defined(ESP8266)
+  Serial.setDebugOutput(true);
+#else
   fdevopen( &serial_putc, 0 );
+#endif
 }
 
 #elif defined (__arm__)
