@@ -530,7 +530,7 @@ for (j = 0; j < loops; j += 1){
   for (i = 0; i < outp; i++)
   {
 #if defined(ESP8266)
-	printf("%c",output[j*N_BLOCK + i]);
+    printf("%c",output[j*N_BLOCK + i]);
 #else
     printf_P(PSTR("%c"),output[j*N_BLOCK + i]);
 #endif
@@ -550,7 +550,7 @@ void AES::printArray(byte output[],int sizel)
   for (int i = 0; i < sizel; i++)
   {
 #if defined(ESP8266)
-	printf("%x", output[i]);
+    printf("%x", output[i]);
 #else
     printf_P(PSTR("%x"),output[i]);
 #endif
