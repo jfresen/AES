@@ -7,8 +7,8 @@ byte *key = (unsigned char*)"0123456789010123";
 
 byte plain[] = "Add NodeAdd NodeAdd NodeAdd NodeAdd Node";
 
-//real iv = iv x2 ex: 01234567 = 0123456701234567
-unsigned long long int my_iv = 36753562;
+//real iv = iv x2 ex: my_iv = 0x01234567 --> iv = 0x00000000012345670000000001234567
+uint64_t my_iv = 0x36753562;
 
 void setup ()
 {

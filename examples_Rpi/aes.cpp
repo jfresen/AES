@@ -10,8 +10,8 @@ byte key[] = "01234567899876543210012345678998";
 
 byte plain[] = "TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST";
 
-//real iv = iv x2 ex: 01234567 = 0123456701234567
-unsigned long long int my_iv = 01234567;
+//real iv = iv x2 ex: my_iv = 0x01234567 --> iv = 0x00000000012345670000000001234567
+uint64_t my_iv = 0x01234567;
 
 int main(int argc, char** argv)
 {
