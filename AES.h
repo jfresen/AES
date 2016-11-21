@@ -1,6 +1,7 @@
 #ifndef __AES_H__
 #define __AES_H__
 
+#include <stdint.h>
 #include "AES_config.h"
 /*
  ---------------------------------------------------------------------------
@@ -150,27 +151,28 @@ class AES
 	 */
 	byte cbc_decrypt (byte * cipher, byte * plain, int n_block) ;
 		
-	/** Sets IV (initialization vector) and IVC (IV counter).
-	 *  This function changes the ivc and iv variables needed for AES.
+	/**
+	 * Sets the IV (initialization vector) using the given number. The 16-byte
+	 * IV is made by copying the 8-byte number to both the upper and lower half
+	 * of the IV.
 	 *
-	 *  @param IVCl int or hex value of iv , ex. 0x0000000000000001
-	 *  @note example:
-	 *  @code unsigned long long int my_iv = 01234567; @endcode
-	*/
-	void set_IV(unsigned long long int IVCl);
+	 * @param num int or hex value, ex. 0x0000000000000001
+	 * @note example:
+	 * @code uint64_t my_iv = 01234567; @endcode
+	 */
+	void set_IV(uint64_t num);
 	
 	/**
 	 * Sets the IV (initialization vector) to the given array of 16 bytes.
 	 */
-	void set_IV(byte *iv);
-		
-	/** increase the iv (initialization vector) by 1
-	 * 
-	 *  This function increased the VI by one step in order to have a different IV each time
-	 * 
-	*/
+	void set_IV(byte *newIV);
+
+	/**
+	 * Increase the iv (initialization vector) by 1.
+	 * This function increases the IV by one in order to have a different IV each time.
+	 */
 	void iv_inc();
-		
+
 	/** Getter method for size
 	 * 
 	 * This function return the size

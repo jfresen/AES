@@ -446,26 +446,26 @@ byte AES::cbc_decrypt (byte * cipher, byte * plain, int n_block)
 
 /*****************************************************************************/
 
-void AES::set_IV(unsigned long long int IVCl){
-	memcpy(iv,&IVCl,8);
-	memcpy(iv+8,&IVCl,8);
+void AES::set_IV(uint64_t num) {
+	memcpy(iv, &num, 8);
+	memcpy(iv+8, &num, 8);
 }
 
 /*****************************************************************************/
 
-void AES::set_IV(byte *IV) {
-	memcpy(iv,IV,16);
+void AES::set_IV(byte *newIV) {
+	memcpy(iv, newIV, 16);
 }
 
 /******************************************************************************/
 
-void AES::iv_inc(){
-	// Increment both the upper 8 bytes and the lower 8 bytes to
-	// maintain compatibility with the old implementation
-	unsigned long long *num = (unsigned long long *)iv;
+void AES::iv_inc() {
+	uint64_t *num = (uint64_t *)iv;
 	(*num)++;
-	num++;
-	(*num)++;
+	if (*num == 0) {
+		num++;
+		(*num)++;
+	}
 }
 
 /******************************************************************************/
