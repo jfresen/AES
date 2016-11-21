@@ -449,15 +449,17 @@ byte AES::cbc_decrypt (byte * cipher, byte * plain, int n_block)
 void AES::set_IV(unsigned long long int IVCl){
 	memcpy(iv,&IVCl,8);
 	memcpy(iv+8,&IVCl,8);
-	IVC = IVCl;
 }
 
 /******************************************************************************/
 
 void AES::iv_inc(){
-	IVC += 1;
-	memcpy(iv,&IVC,8);
-	memcpy(iv+8,&IVC,8);
+	// Increment both the upper 8 bytes and the lower 8 bytes to
+	// maintain compatibility with the old implementation
+	unsigned long long *num = (unsigned long long *)iv;
+	(*num)++;
+	num++;
+	(*num)++;
 }
 
 /******************************************************************************/
@@ -476,8 +478,7 @@ void AES::set_size(int sizel){
 /******************************************************************************/
 
 void AES::get_IV(byte *out){
-	memcpy(out,&IVC,8);
-	memcpy(out+8,&IVC,8);
+	memcpy(out,iv,16);
 }
 
 /******************************************************************************/

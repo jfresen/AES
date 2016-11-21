@@ -159,7 +159,7 @@ class AES
 	*/
 	void set_IV(unsigned long long int IVCl);
 		
-	/** increase the iv (initialization vector) and IVC (IV counter) by 1
+	/** increase the iv (initialization vector) by 1
 	 * 
 	 *  This function increased the VI by one step in order to have a different IV each time
 	 * 
@@ -296,7 +296,6 @@ class AES
  private:
   int round ;/**< holds the number of rounds to be used. */
   byte key_sched [KEY_SCHEDULE_BYTES] ;/**< holds the pre-computed key for the encryption/decrpytion. */
-  unsigned long long int IVC;/**< holds the initialization vector counter in numerical format. */
   byte iv[16];/**< holds the initialization vector that will be used in the cipher. */
   int pad;/**< holds the size of the padding. */
   int size;/**< hold the size of the plaintext to be ciphered */
