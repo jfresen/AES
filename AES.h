@@ -158,6 +158,11 @@ class AES
 	 *  @code unsigned long long int my_iv = 01234567; @endcode
 	*/
 	void set_IV(unsigned long long int IVCl);
+	
+	/**
+	 * Sets the IV (initialization vector) to the given array of 16 bytes.
+	 */
+	void set_IV(byte *iv);
 		
 	/** increase the iv (initialization vector) by 1
 	 * 
